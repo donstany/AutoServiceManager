@@ -37,7 +37,8 @@ namespace AutoServiceManager.Web
             services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
             services.AddNotyf(o =>
             {
-                o.DurationInSeconds = 10;
+                o.DurationInSeconds = 15;
+                o.Position = NotyfPosition.TopCenter;
                 o.IsDismissable = true;
                 o.HasRippleEffect = true;
             });

@@ -28,6 +28,8 @@ namespace AutoServiceManager.Infrastructure.Extensions
             services.AddTransient<IProductCacheRepository, ProductCacheRepository>();
             services.AddTransient<IBrandRepository, BrandRepository>();
             services.AddTransient<IBrandCacheRepository, BrandCacheRepository>();
+            services.AddTransient<ICarRepository, CarRepository>();
+            services.AddTransient<ICarCacheRepository, CarCacheRepository>();
             services.AddTransient<ILogRepository, LogRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 

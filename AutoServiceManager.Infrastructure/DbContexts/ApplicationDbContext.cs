@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoServiceManager.Domain.Entities.Reception;
 
 namespace AutoServiceManager.Infrastructure.DbContexts
 {
@@ -23,6 +24,7 @@ namespace AutoServiceManager.Infrastructure.DbContexts
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Car> Cars { get; set; }
 
         public IDbConnection Connection => Database.GetDbConnection();
 

@@ -1,4 +1,6 @@
-﻿using AutoServiceManager.Application.Features.Cars.Commands.Delete;
+﻿using AutoServiceManager.Application.Features.Cars.Commands.Create;
+using AutoServiceManager.Application.Features.Cars.Commands.Delete;
+using AutoServiceManager.Application.Features.Cars.Commands.Update;
 using AutoServiceManager.Application.Features.Cars.Queries.GetAllCached;
 using AutoServiceManager.Application.Features.Cars.Queries.GetById;
 using AutoServiceManager.Web.Abstractions;
@@ -50,6 +52,49 @@ namespace AutoServiceManager.Web.Areas.Catalog.Controllers
                 return null;
             }
         }
+
+        [HttpPost]
+        public async Task<JsonResult> OnPostCreateOrEdit(int id, CarViewModel car)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == 0)
+                {
+                    var createCarCommand = _mapper.Map<CreateCarCommand>(car);
+                    var result = await _mediator.Send(createCarCommand);
+                    if (result.Succeeded)
+                    {
+                        id = result.Data;
+                        _notify.Success($"Car with ID {result.Data} Created.");
+                    }
+                    else _notify.Error(result.Message);
+                }
+                else
+                {
+                    var updateCarCommand = _mapper.Map<UpdateCarCommand>(car);
+                    var result = await _mediator.Send(updateCarCommand);
+                    if (result.Succeeded) _notify.Information($"Car with ID {result.Data} Updated.");
+                }
+                var response = await _mediator.Send(new GetAllCarsCachedQuery());
+                if (response.Succeeded)
+                {
+                    var viewModel = _mapper.Map<List<CarViewModel>>(response.Data);
+                    var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", viewModel);
+                    return new JsonResult(new { isValid = true, html = html });
+                }
+                else
+                {
+                    _notify.Error(response.Message);
+                    return null;
+                }
+            }
+            else
+            {
+                var html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", car);
+                return new JsonResult(new { isValid = false, html = html });
+            }
+        }
+
 
         [HttpPost]
         public async Task<JsonResult> OnPostDelete(int id)

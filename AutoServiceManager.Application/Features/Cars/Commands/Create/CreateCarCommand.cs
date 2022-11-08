@@ -10,9 +10,9 @@ namespace AutoServiceManager.Application.Features.Cars.Commands.Create
 {
     public partial class CreateCarCommand : IRequest<Result<int>>
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Tax { get; set; }
+        public string Make { get; set; }
+        public string Color { get; set; }
+        public string Plate { get; set; }
     }
     public class CreateCarCommandHandler : IRequestHandler<CreateCarCommand, Result<int>>
     {

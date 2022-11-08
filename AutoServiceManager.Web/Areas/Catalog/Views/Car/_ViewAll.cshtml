@@ -47,9 +47,8 @@
                                     <a onclick="jQueryModalGet('/catalog/car/OnGetCreateOrEdit?id=@car.Id', 'Edit Car')" class="dropdown-item"><i class="fas fa-pencil-alt"></i>  Edit</a>
 
                                 }
-                                @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Delete)).Result.Succeeded)
+                                @*@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Delete)).Result.Succeeded)*@
                                 @if (true)
-
                                 {
                                     <form id="form_delete_@car.Id" asp-area="Catalog" asp-controller="Car" method="post" asp-action="OnPostDelete" asp-route-id="@car.Id" onsubmit="return jQueryModalDelete(this)">
                                         <a href="javascript:$('#form_delete_@car.Id').submit();" class="dropdown-item"><i class="fas fa-trash-alt"></i>  Delete</a>

@@ -1,0 +1,43 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@using AutoServiceManager.Web.Areas.Catalog.Models
+@model CarViewModel
+<form id="create-form" method="post" asp-controller="Car" asp-action="OnPostCreateOrEdit" asp-route-id="@Model.Id" onsubmit="return jQueryModalPost(this);" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">@localizer["Make"]</label>
+                <div class="col-md-9">
+                    <input type="text" asp-for="Make" name="Make" class="form-control">
+                    <span asp-validation-for="Make" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">@localizer["Color"]</label>
+                <div class="col-md-9">
+                    <input type="text" asp-for="Color" name="Color" class="form-control">
+                    <span asp-validation-for="Color" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">@localizer["Plate"]</label>
+                <div class="col-md-9">
+                    <input type="text" asp-for="Plate" name="Plate" class="form-control">
+                    <span asp-validation-for="Plate" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group justify-content-between" style="margin-bottom: 0px !important">
+        <button type="submit" class="btn btn-success">Save</button>
+        <button type="submit" class="btn btn-default close-button" data-dismiss="modal">Cancel</button>
+    </div>
+</form>
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse(document);
+</script>

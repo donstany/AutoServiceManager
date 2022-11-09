@@ -65,6 +65,15 @@ namespace AutoServiceManager.Infrastructure.DbContexts
             {
                 property.SetColumnType("decimal(18,2)");
             }
+
+            builder.Entity<Car>()
+                .Property(p => p.Make)
+                .IsRequired();
+
+            builder.Entity<Car>()
+                .Property(p => p.Color)
+                .IsRequired();
+
             base.OnModelCreating(builder);
         }
     }

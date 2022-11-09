@@ -1,7 +1,7 @@
-﻿using AutoServiceManager.Web.Areas.Catalog.Models;
+﻿using AutoServiceManager.Web.Areas.Reception.Models;
 using FluentValidation;
 
-namespace AutoServiceManager.Web.Areas.Catalog.Validators
+namespace AutoServiceManager.Web.Areas.Reception.Validators
 {
     public class CarViewModelValidator : AbstractValidator<CarViewModel>
     {
@@ -14,8 +14,6 @@ namespace AutoServiceManager.Web.Areas.Catalog.Validators
             RuleFor(p => p.Color)
             .NotEmpty().WithMessage("{PropertyName} is required.")
             .NotNull();
-
-            //TODO Stan  -> for BG Plate number has 8 is maximum length ex. CA1445CR
         }
     }
 }

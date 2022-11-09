@@ -1,4 +1,4 @@
-﻿@using AutoServiceManager.Web.Areas.Catalog.Models
+﻿@using AutoServiceManager.Web.Areas.Reception.Models
 @model IEnumerable<CarViewModel>
 <table id="carTable" class="table table-striped" width="100%" cellspacing="0">
     <thead>
@@ -41,12 +41,12 @@
                             <div class="dropdown-menu shadow animated--grow-in">
                                 @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Edit)).Result.Succeeded)
                                 {
-                                    <a onclick="jQueryModalGet('/catalog/car/OnGetCreateOrEdit?id=@car.Id', 'Edit Car')" class="dropdown-item"><i class="fas fa-pencil-alt"></i>  Edit</a>
+                                    <a onclick="jQueryModalGet('/reception/car/OnGetCreateOrEdit?id=@car.Id', 'Edit Car')" class="dropdown-item"><i class="fas fa-pencil-alt"></i>  Edit</a>
 
                                 }
                                 @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Delete)).Result.Succeeded)
                                 {
-                                    <form id="form_delete_@car.Id" asp-area="Catalog" asp-controller="Car" method="post" asp-action="OnPostDelete" asp-route-id="@car.Id" onsubmit="return jQueryModalDelete(this)">
+                                    <form id="form_delete_@car.Id" asp-area="Reception" asp-controller="Car" method="post" asp-action="OnPostDelete" asp-route-id="@car.Id" onsubmit="return jQueryModalDelete(this)">
                                         <a href="javascript:$('#form_delete_@car.Id').submit();" class="dropdown-item"><i class="fas fa-trash-alt"></i>  Delete</a>
                                     </form>
                                 }

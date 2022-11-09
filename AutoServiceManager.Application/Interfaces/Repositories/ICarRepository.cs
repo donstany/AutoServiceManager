@@ -5,8 +5,6 @@ using AutoServiceManager.Domain.Entities.Reception;
 
 namespace AutoServiceManager.Application.Interfaces.Repositories
 {
-    //TODO: Stan
-    //NTH: think about generic Base interface all method is repeatable!
     public interface ICarRepository
     {
         IQueryable<Car> Cars { get; }

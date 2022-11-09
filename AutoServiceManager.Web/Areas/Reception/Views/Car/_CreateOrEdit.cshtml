@@ -1,5 +1,5 @@
 ﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
-@using AutoServiceManager.Web.Areas.Catalog.Models
+@using AutoServiceManager.Web.Areas.Reception.Models
 @model CarViewModel
 <form id="create-form" method="post" asp-controller="Car" asp-action="OnPostCreateOrEdit" asp-route-id="@Model.Id" onsubmit="return jQueryModalPost(this);" enctype="multipart/form-data">
     <div class="row">

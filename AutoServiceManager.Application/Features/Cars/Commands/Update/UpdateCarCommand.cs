@@ -30,15 +30,13 @@ namespace AutoServiceManager.Application.Features.Cars.Commands.Update
 
                 if (car == null)
                 {
-                    //TODO: Stan
-                    //NTH: add in string interpolation placeholder for invoked command
                     return Result<int>.Fail($"Car Not Found.");
                 }
                 else
                 {
-                    car.Make = command.Make ?? car.Make;//TODO: null chheck coalesce is not needed it ia mandatory 
+                    car.Make = command.Make;
+                    car.Color = command.Color;
                     car.Plate = command.Plate ?? car.Plate;
-                    car.Color = command.Color ?? car.Color; //TODO: null chheck coalesce is not needed it ia mandatory 
 
                     await _carRepository.UpdateAsync(car);
                     await _unitOfWork.Commit(cancellationToken);

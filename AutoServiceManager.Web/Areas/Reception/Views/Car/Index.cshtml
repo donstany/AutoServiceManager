@@ -2,14 +2,13 @@
     ViewData["Title"] = localizer["Cars"];
     ViewData["Caption"] = localizer["Manage Cars here"];
 }
-@using AutoServiceManager.Web.Areas.Catalog.Models
+@using AutoServiceManager.Web.Areas.Reception.Models
 @model CarViewModel
 <div class="card">
     <div class="col-sm-12" style="padding:20px">
-        @*@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Create)).Result.Succeeded)*@
-        @if (true)
+        @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Create)).Result.Succeeded)
         {
-            <a onclick="jQueryModalGet('/catalog/car/OnGetCreateOrEdit','Create Car')" class="btn bg-success">
+            <a onclick="jQueryModalGet('/reception/car/OnGetCreateOrEdit','Create Car')" class="btn bg-success">
                 <i class="fa fa-plus-square"></i> Create
             </a>
         }
@@ -34,7 +33,7 @@
             });
         });
         function loadData() {
-            $('#viewAll').load('/catalog/car/LoadAll');
+            $('#viewAll').load('/reception/car/LoadAll');
         }
     </script>
 }

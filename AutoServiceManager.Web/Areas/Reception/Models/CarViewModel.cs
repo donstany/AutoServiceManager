@@ -1,4 +1,4 @@
-﻿namespace AutoServiceManager.Web.Areas.Catalog.Models
+﻿namespace AutoServiceManager.Web.Areas.Reception.Models
 {
     public class CarViewModel
     {

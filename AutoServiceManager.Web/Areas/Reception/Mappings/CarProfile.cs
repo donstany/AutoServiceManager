@@ -1,11 +1,11 @@
-﻿using AutoServiceManager.Web.Areas.Catalog.Models;
-using AutoMapper;
+﻿using AutoMapper;
 using AutoServiceManager.Application.Features.Cars.Queries.GetAllCached;
 using AutoServiceManager.Application.Features.Cars.Queries.GetById;
 using AutoServiceManager.Application.Features.Cars.Commands.Create;
 using AutoServiceManager.Application.Features.Cars.Commands.Update;
+using AutoServiceManager.Web.Areas.Reception.Models;
 
-namespace AutoServiceManager.Web.Areas.Catalog.Mappings
+namespace AutoServiceManager.Web.Areas.Reception.Mappings
 {
     public class CarProfile : Profile
     {

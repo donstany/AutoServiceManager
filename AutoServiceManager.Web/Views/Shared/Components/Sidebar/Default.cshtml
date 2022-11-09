@@ -73,12 +73,6 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a is-active-route asp-area="Catalog" asp-controller="Car" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>@localizer["Car"]</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a is-active-route asp-area="Catalog" asp-controller="Product" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>@localizer["Product"]</p>
@@ -88,6 +82,24 @@
                             <a is-active-route asp-area="Catalog" asp-controller="Brand" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>@localizer["Brand"]</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li is-active-route asp-area="Reception" class="nav-item has-treeview">
+                    <a is-active-route asp-area="Reception" class="nav-link">
+                        <i class="nav-icon fa fa-desktop"></i>
+                        <p>
+                            @localizer["Reception"]
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a is-active-route asp-area="Reception" asp-controller="Car" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>@localizer["Car"]</p>
                             </a>
                         </li>
                     </ul>

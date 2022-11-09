@@ -4,15 +4,15 @@ using AutoServiceManager.Application.Features.Cars.Commands.Update;
 using AutoServiceManager.Application.Features.Cars.Queries.GetAllCached;
 using AutoServiceManager.Application.Features.Cars.Queries.GetById;
 using AutoServiceManager.Web.Abstractions;
-using AutoServiceManager.Web.Areas.Catalog.Models;
+using AutoServiceManager.Web.Areas.Reception.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AutoServiceManager.Web.Areas.Catalog.Controllers
+namespace AutoServiceManager.Web.Areas.Reception.Controllers
 {
     //TODO Stan move in separate folder Reception 
-    [Area("Catalog")]
+    [Area("Reception")]
     public class CarController : BaseController<CarController>
     {
         public IActionResult Index()

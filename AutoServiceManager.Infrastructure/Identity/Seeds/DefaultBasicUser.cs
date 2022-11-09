@@ -30,6 +30,12 @@ namespace AutoServiceManager.Infrastructure.Identity.Seeds
                     await userManager.AddToRoleAsync(defaultUser, Roles.Basic.ToString());
                 }
             }
+            await roleManager.SeedClaimsForBasic();
+        }
+        private async static Task SeedClaimsForBasic(this RoleManager<IdentityRole> roleManager)
+        {
+            var adminRole = await roleManager.FindByNameAsync("Basic");
+            await roleManager.AddPermissionClaim(adminRole, "Cars");
         }
     }
 }

@@ -7,12 +7,11 @@
             <th>Make</th>
             <th>Color</th>
             <th>Plate</th>
-            <th>Actions</th>
-@*            @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Delete)).Result.Succeeded
+            @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Delete)).Result.Succeeded
             || (AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Edit)).Result.Succeeded)
             {
                 <th>Actions</th>
-            }*@
+            }
         </tr>
     </thead>
     <tbody>
@@ -32,8 +31,7 @@
                 <td>
                     @car.Plate
                 </td>
-                @*@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Delete)).Result.Succeeded || (AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Edit)).Result.Succeeded)*@
-                @if (true)
+                @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Delete)).Result.Succeeded || (AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Edit)).Result.Succeeded)
                 {
                     <td text-right">
                         <div class="btn-group">
@@ -41,14 +39,12 @@
                                 Action
                             </button>
                             <div class="dropdown-menu shadow animated--grow-in">
-                                @*@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Edit)).Result.Succeeded)*@
-                                @if (true)
+                                @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Edit)).Result.Succeeded)
                                 {
                                     <a onclick="jQueryModalGet('/catalog/car/OnGetCreateOrEdit?id=@car.Id', 'Edit Car')" class="dropdown-item"><i class="fas fa-pencil-alt"></i>  Edit</a>
 
                                 }
-                                @*@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Delete)).Result.Succeeded)*@
-                                @if (true)
+                                @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Cars.Delete)).Result.Succeeded)
                                 {
                                     <form id="form_delete_@car.Id" asp-area="Catalog" asp-controller="Car" method="post" asp-action="OnPostDelete" asp-route-id="@car.Id" onsubmit="return jQueryModalDelete(this)">
                                         <a href="javascript:$('#form_delete_@car.Id').submit();" class="dropdown-item"><i class="fas fa-trash-alt"></i>  Delete</a>

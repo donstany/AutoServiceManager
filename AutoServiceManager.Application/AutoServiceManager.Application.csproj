@@ -3,6 +3,15 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Features\CarOrders\Commands\Update\GetAllCached\**" />
+    <Compile Remove="Features\CarOrders\Commands\Update\GetById\**" />
+    <EmbeddedResource Remove="Features\CarOrders\Commands\Update\GetAllCached\**" />
+    <EmbeddedResource Remove="Features\CarOrders\Commands\Update\GetById\**" />
+    <None Remove="Features\CarOrders\Commands\Update\GetAllCached\**" />
+    <None Remove="Features\CarOrders\Commands\Update\GetById\**" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AspNetCoreHero.Results" Version="1.1.1" />
     <PackageReference Include="AutoMapper" Version="10.1.1" />
@@ -22,8 +31,6 @@
     <ProjectReference Include="..\AutoServiceManager.Domain\AutoServiceManager.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\CarOrders\Commands\Update\GetAllCached\" />
-    <Folder Include="Features\CarOrders\Commands\Update\GetById\" />
     <Folder Include="Features\CarOrders\Queries\" />
   </ItemGroup>
 </Project>

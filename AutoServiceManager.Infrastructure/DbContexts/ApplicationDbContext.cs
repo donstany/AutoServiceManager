@@ -74,6 +74,12 @@ namespace AutoServiceManager.Infrastructure.DbContexts
             builder.Entity<Car>()
                 .Property(p => p.Color)
                 .IsRequired();
+           
+            builder.Entity<CarOrder>()
+                .Property(p => p.Description)
+                .IsRequired();
+
+            //TODO Stan add FK constraint relation to Car and requirment constraint
 
             base.OnModelCreating(builder);
         }

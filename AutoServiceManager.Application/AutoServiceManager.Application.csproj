@@ -22,7 +22,6 @@
     <ProjectReference Include="..\AutoServiceManager.Domain\AutoServiceManager.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\CarOrders\Commands\Delete\" />
     <Folder Include="Features\CarOrders\Commands\Update\GetAllCached\" />
     <Folder Include="Features\CarOrders\Commands\Update\GetById\" />
     <Folder Include="Features\CarOrders\Queries\" />

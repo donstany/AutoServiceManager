@@ -20,5 +20,6 @@ namespace AutoServiceManager.Application.Interfaces.Contexts
         DbSet<Product> Products { get; set; }
 
         DbSet<Car> Cars { get; set; }
+        DbSet<CarOrder> CarOrders { get; set; }
     }
 }

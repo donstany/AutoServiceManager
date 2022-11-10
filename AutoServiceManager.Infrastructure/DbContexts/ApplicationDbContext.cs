@@ -25,6 +25,7 @@ namespace AutoServiceManager.Infrastructure.DbContexts
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Car> Cars { get; set; }
+        public DbSet<CarOrder> CarOrders { get; set; }
 
         public IDbConnection Connection => Database.GetDbConnection();
 

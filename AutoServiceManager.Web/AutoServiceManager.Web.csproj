@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Catalog\Views\Car\**" />
+    <Content Remove="Areas\Catalog\Views\Car\**" />
+    <EmbeddedResource Remove="Areas\Catalog\Views\Car\**" />
+    <None Remove="Areas\Catalog\Views\Car\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.2" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="9.3.0" />
@@ -27,7 +34,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Catalog\Data\" />
-    <Folder Include="Areas\Catalog\Views\Car\" />
     <Folder Include="Areas\Dashboard\Data\" />
     <Folder Include="Areas\Dashboard\Models\" />
     <Folder Include="Areas\Settings\Data\" />

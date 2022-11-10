@@ -30,7 +30,4 @@
   <ItemGroup>
     <ProjectReference Include="..\AutoServiceManager.Domain\AutoServiceManager.Domain.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\CarOrders\Queries\" />
-  </ItemGroup>
 </Project>

@@ -1,10 +1,10 @@
 ﻿using AutoServiceManager.Application.Constants;
 using AutoServiceManager.Application.Features.CarOrders.Commands.Create;
 using AutoServiceManager.Application.Features.CarOrders.Commands.Delete;
+using AutoServiceManager.Application.Features.CarOrders.Commands.Update;
 using AutoServiceManager.Application.Features.CarOrders.Queries.GetAllCached;
 using AutoServiceManager.Application.Features.CarOrders.Queries.GetById;
 using AutoServiceManager.Application.Features.Cars.Queries.GetAllCached;
-using AutoServiceManager.Application.Features.Products.Commands.Update;
 using AutoServiceManager.Web.Abstractions;
 using AutoServiceManager.Web.Areas.Reception.Models;
 using Microsoft.AspNetCore.Authorization;

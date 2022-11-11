@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System;
 
-namespace AutoServiceManager.Application.Features.Products.Commands.Update
+namespace AutoServiceManager.Application.Features.CarOrders.Commands.Update
 {
     public class UpdateCarOrderCommand : IRequest<Result<int>>
     {

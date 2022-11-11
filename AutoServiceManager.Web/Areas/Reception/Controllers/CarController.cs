@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace AutoServiceManager.Web.Areas.Reception.Controllers
 {
-    //TODO Stan move in separate folder Reception 
     [Area("Reception")]
     public class CarController : BaseController<CarController>
     {

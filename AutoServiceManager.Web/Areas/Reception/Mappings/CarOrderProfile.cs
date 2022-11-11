@@ -5,7 +5,7 @@ using AutoServiceManager.Application.Features.CarOrders.Queries.GetById;
 using AutoServiceManager.Web.Areas.Reception.Models;
 using AutoMapper;
 
-namespace AutoServiceManager.Web.Areas.Catalog.Mappings
+namespace AutoServiceManager.Web.Areas.Reception.Mappings
 {
     internal class CarOrderProfile : Profile
     {

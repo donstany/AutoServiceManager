@@ -31,6 +31,7 @@ namespace AutoServiceManager.Web.Areas.Admin.Controllers
             var allPermissions = new List<RoleClaimsViewModel>();
             allPermissions.GetPermissions(typeof(Permissions.Brands), roleId);
             allPermissions.GetPermissions(typeof(Permissions.Cars), roleId);
+            allPermissions.GetPermissions(typeof(Permissions.CarOrders), roleId);
             allPermissions.GetPermissions(typeof(Permissions.Dashboard), roleId);
             allPermissions.GetPermissions(typeof(Permissions.Products), roleId);
             allPermissions.GetPermissions(typeof(Permissions.Users), roleId);

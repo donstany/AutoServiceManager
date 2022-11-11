@@ -126,6 +126,15 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Car" xml:space="preserve">
+    <value>Car</value>
+  </data>
+  <data name="CarOrder" xml:space="preserve">
+    <value>CarOrder</value>
+  </data>
+  <data name="CarOrders" xml:space="preserve">
+    <value>CarOrders</value>
+  </data>
   <data name="Cars" xml:space="preserve">
     <value>Cars</value>
   </data>
@@ -141,8 +150,14 @@
   <data name="Dark Mode" xml:space="preserve">
     <value>Dark Mode</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="Default Credentials" xml:space="preserve">
     <value>Default Credentials</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -173,6 +188,9 @@
   </data>
   <data name="Make" xml:space="preserve">
     <value>Make</value>
+  </data>
+  <data name="Manage CarOrders here" xml:space="preserve">
+    <value>Manage CarOrders here</value>
   </data>
   <data name="Manage Cars here" xml:space="preserve">
     <value>Manage Cars here</value>

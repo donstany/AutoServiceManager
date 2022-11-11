@@ -1,7 +1,10 @@
 ﻿using AutoServiceManager.Application.Constants;
+using AutoServiceManager.Application.Features.CarOrders.Commands.Create;
+using AutoServiceManager.Application.Features.CarOrders.Commands.Delete;
 using AutoServiceManager.Application.Features.CarOrders.Queries.GetAllCached;
 using AutoServiceManager.Application.Features.CarOrders.Queries.GetById;
 using AutoServiceManager.Application.Features.Cars.Queries.GetAllCached;
+using AutoServiceManager.Application.Features.Products.Commands.Update;
 using AutoServiceManager.Web.Abstractions;
 using AutoServiceManager.Web.Areas.Reception.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -65,6 +68,74 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
             }
         }
 
-        //TODO
+        [HttpPost]
+        public async Task<JsonResult> OnPostCreateOrEdit(int id, CarOrderViewModel carOrder)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == 0)
+                {
+                    var createCarOrderCommand = _mapper.Map<CreateCarOrderCommand>(carOrder);
+                    var result = await _mediator.Send(createCarOrderCommand);
+                    if (result.Succeeded)
+                    {
+                        id = result.Data;
+                        _notify.Success($"CarOrder with ID {result.Data} Created.");
+                    }
+                    else _notify.Error(result.Message);
+                }
+                else
+                {
+                    var updateCarOrderCommand = _mapper.Map<UpdateCarOrderCommand>(carOrder);
+                    var result = await _mediator.Send(updateCarOrderCommand);
+                    if (result.Succeeded) _notify.Information($"CarOrder with ID {result.Data} Updated.");
+                }
+
+                var response = await _mediator.Send(new GetAllCarOrdersCachedQuery());
+                if (response.Succeeded)
+                {
+                    var viewModel = _mapper.Map<List<CarOrderViewModel>>(response.Data);
+                    var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", viewModel);
+                    return new JsonResult(new { isValid = true, html = html });
+                }
+                else
+                {
+                    _notify.Error(response.Message);
+                    return null;
+                }
+            }
+            else
+            {
+                var html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", carOrder);
+                return new JsonResult(new { isValid = false, html = html });
+            }
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> OnPostDelete(int id)
+        {
+            var deleteCommand = await _mediator.Send(new DeleteCarOrderCommand { Id = id });
+            if (deleteCommand.Succeeded)
+            {
+                _notify.Information($"Product with Id {id} Deleted.");
+                var response = await _mediator.Send(new GetAllCarOrdersCachedQuery());
+                if (response.Succeeded)
+                {
+                    var viewModel = _mapper.Map<List<CarOrderViewModel>>(response.Data);
+                    var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", viewModel);
+                    return new JsonResult(new { isValid = true, html = html });
+                }
+                else
+                {
+                    _notify.Error(response.Message);
+                    return null;
+                }
+            }
+            else
+            {
+                _notify.Error(deleteCommand.Message);
+                return null;
+            }
+        }
     }
 }

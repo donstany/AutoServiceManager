@@ -1,0 +1,54 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@using AutoServiceManager.Web.Areas.Reception.Models
+@model CarOrderViewModel
+<form id="create-form" method="post" asp-controller="CarOrder" asp-action="OnPostCreateOrEdit" asp-route-id="@Model.Id" onsubmit="return jQueryModalPost(this);" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">Date</label>
+                <div class="col-md-9">
+                    <input class="form-control" asp-for="Date" name="Date" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">Description</label>
+                <div class="col-md-9">
+                    <textarea rows="6" asp-for="Description" name="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">Car</label>
+                <div class="col-md-9">
+                    <div class="input-group">
+                        <select name="CarId" class="form-control select2bs4" id="CarId" asp-for="CarId" asp-items="@Model.Cars">
+                        </select>
+                    </div>
+                    <span asp-validation-for="CarId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group justify-content-between" style="margin-bottom: 0px !important">
+        <button type="submit" class="btn btn-success">Save</button>
+        <button type="submit" class="btn btn-default close-button" data-dismiss="modal">Cancel</button>
+    </div>
+</form>
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse(document);
+    $("#CarId").select2({
+        placeholder: "Select a Car",
+        theme: "bootstrap4",
+        escapeMarkup: function (m) {
+            return m;
+        }
+    });
+</script>

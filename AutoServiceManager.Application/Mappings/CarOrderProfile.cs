@@ -4,6 +4,7 @@ using AutoServiceManager.Application.Features.CarOrders.Commands.Create;
 using AutoServiceManager.Application.Features.CarOrders.Queries.GetById;
 using AutoServiceManager.Application.Features.CarOrders.Queries.GetAllCached;
 using AutoServiceManager.Application.Features.CarOrders.Queries.GetAllPaged;
+using AutoServiceManager.Domain.Entities.Reception;
 
 namespace AutoServiceManager.Application.Mappings
 {
@@ -11,10 +12,10 @@ namespace AutoServiceManager.Application.Mappings
     {
         public CarOrderProfile()
         {
-            CreateMap<CreateCarOrderCommand, Product>().ReverseMap();
-            CreateMap<GetCarOrderByIdResponse, Product>().ReverseMap();
-            CreateMap<GetAllCarOrdersCachedResponse, Product>().ReverseMap();
-            CreateMap<GetAllCarOrdersResponse, Product>().ReverseMap();
+            CreateMap<CreateCarOrderCommand, CarOrder>().ReverseMap();
+            CreateMap<GetCarOrderByIdResponse, CarOrder>().ReverseMap();
+            CreateMap<GetAllCarOrdersCachedResponse, CarOrder>().ReverseMap();
+            CreateMap<GetAllCarOrdersResponse, CarOrder>().ReverseMap();
         }
     }
 }

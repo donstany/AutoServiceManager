@@ -86,7 +86,7 @@ namespace AutoServiceManager.Web
                 endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{area=Dashboard}/{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{area=Reception}/{controller=Car}/{action=Index}/{id?}");
             });
         }
     }

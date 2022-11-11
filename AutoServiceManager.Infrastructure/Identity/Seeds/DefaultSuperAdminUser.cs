@@ -30,6 +30,7 @@ namespace AutoServiceManager.Infrastructure.Identity.Seeds
             await roleManager.AddPermissionClaim(adminRole, "Products");
             await roleManager.AddPermissionClaim(adminRole, "Brands");
             await roleManager.AddPermissionClaim(adminRole, "Cars");
+            await roleManager.AddPermissionClaim(adminRole, "CarOders");
         }
 
         public static async Task SeedAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)

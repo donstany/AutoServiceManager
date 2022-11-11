@@ -6,52 +6,43 @@
             <th>Id</th>
             <th>Description</th>
             <th>Date</th>
-            @if ((AuthorizationService.AuthorizeAsync(User, Permissions.CarOrders.Delete)).Result.Succeeded
-               || (AuthorizationService.AuthorizeAsync(User, Permissions.CarOrders.Edit)).Result.Succeeded)
-            {
-                <th>Actions</th>
-            }
+
+            <th>Actions</th>
+
         </tr>
     </thead>
     <tbody>
 
         @foreach (var carOrder in Model)
         {
-        <tr>
-            <td>
-                @carOrder.Id
-            </td>
-            <td>
-                @carOrder.Description
-            </td>
-            <td>
-                @carOrder.Date
-            </td>
-            @if ((AuthorizationService.AuthorizeAsync(User, Permissions.CarOrders.Delete)).Result.Succeeded
-                 || (AuthorizationService.AuthorizeAsync(User, Permissions.CarOrders.Edit)).Result.Succeeded)
-            {
+            <tr>
+                <td>
+                    @carOrder.Id
+                </td>
+                <td>
+                    @carOrder.Description
+                </td>
+                <td>
+                    @carOrder.Date
+                </td>
+
                 <td text-right">
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Action
                         </button>
                         <div class="dropdown-menu shadow animated--grow-in">
-                            @if ((AuthorizationService.AuthorizeAsync(User, Permissions.CarOrders.Edit)).Result.Succeeded)
-                            {
-                                <a onclick="jQueryModalGet('/reception/carOrder/OnGetCreateOrEdit?id=@carOrder.Id','Edit CarOrder')" class="dropdown-item"><i class="fas fa-pencil-alt"></i>  Edit</a>
+                            <a onclick="jQueryModalGet('/reception/carOrder/OnGetCreateOrEdit?id=@carOrder.Id','Edit CarOrder')" class="dropdown-item"><i class="fas fa-pencil-alt"></i>  Edit</a>
 
-                            }
-                            @if ((AuthorizationService.AuthorizeAsync(User, Permissions.CarOrders.Delete)).Result.Succeeded)
-                            {
-                                <form id="form_delete_@carOrder.Id" asp-area="Reception" asp-controller="CarOrder" method="post" asp-action="OnPostDelete" asp-route-id="@carOrder.Id" onsubmit="return jQueryModalDelete(this)">
-                                    <a href="javascript:$('#form_delete_@carOrder.Id').submit();" class="dropdown-item"><i class="fas fa-trash-alt"></i>  Delete</a>
-                                </form>
-                            }
+                            <form id="form_delete_@carOrder.Id" asp-area="Reception" asp-controller="CarOrder" method="post" asp-action="OnPostDelete" asp-route-id="@carOrder.Id" onsubmit="return jQueryModalDelete(this)">
+                                <a href="javascript:$('#form_delete_@carOrder.Id').submit();" class="dropdown-item"><i class="fas fa-trash-alt"></i>  Delete</a>
+                            </form>
+
                         </div>
                     </div>
                 </td>
-            }
-        </tr>
+                
+            </tr>
         }
     </tbody>
 </table>

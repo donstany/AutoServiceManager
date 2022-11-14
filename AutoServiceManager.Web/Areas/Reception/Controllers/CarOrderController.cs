@@ -35,7 +35,7 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
             return null;
         }
 
-        [Authorize(Policy = Permissions.Users.View)]
+        //TODO Stan -> protect in BE all action with ralated policy from Permissions [Authorize(Policy = Permissions.CarOrders.Create)] 
         public async Task<JsonResult> OnGetCreateOrEdit(int id = 0)
         {
             var carsResponse = await _mediator.Send(new GetAllCarsCachedQuery());

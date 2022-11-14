@@ -27,6 +27,8 @@ namespace AutoServiceManager.Infrastructure.DbContexts
         public DbSet<Car> Cars { get; set; }
         public DbSet<CarOrder> CarOrders { get; set; }
 
+        public DbSet<CarOrdersReportView> ProductionRatingAverages { get; set; }
+
         public IDbConnection Connection => Database.GetDbConnection();
 
         public bool HasChanges => ChangeTracker.HasChanges();
@@ -79,7 +81,10 @@ namespace AutoServiceManager.Infrastructure.DbContexts
                 .Property(p => p.Description)
                 .IsRequired();
 
-            //TODO Stan add FK constraint relation to Car and requirment constraint
+            builder
+            .Entity<CarOrdersReportView>()
+            .ToView(nameof(CarOrdersReportView))
+            .HasKey(t => t.CarOrderId);
 
             base.OnModelCreating(builder);
         }

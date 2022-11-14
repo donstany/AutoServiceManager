@@ -7,7 +7,7 @@ namespace AutoServiceManager.Web.Areas.Reception.Models
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.UtcNow;
         public int CarId { get; set; }
         public SelectList Cars { get; set; }
     }

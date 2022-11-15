@@ -135,6 +135,12 @@
   <data name="CarOrders" xml:space="preserve">
     <value>CarOrders</value>
   </data>
+  <data name="CarOrders Report" xml:space="preserve">
+    <value>CarOrders Report</value>
+  </data>
+  <data name="CarOrders Report View" xml:space="preserve">
+    <value>CarOrders Report View</value>
+  </data>
   <data name="Cars" xml:space="preserve">
     <value>Cars</value>
   </data>
@@ -224,5 +230,8 @@
   </data>
   <data name="Select Logout below if you are ready to end your current session." xml:space="preserve">
     <value>Select Logout below if you are ready to end your current session.</value>
+  </data>
+  <data name="View Report for CarOrders here" xml:space="preserve">
+    <value>View Report for CarOrders here</value>
   </data>
 </root>

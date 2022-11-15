@@ -31,6 +31,7 @@ namespace AutoServiceManager.Infrastructure.Identity.Seeds
             await roleManager.AddPermissionClaim(adminRole, "Brands");
             await roleManager.AddPermissionClaim(adminRole, "Cars");
             await roleManager.AddPermissionClaim(adminRole, "CarOders");
+            await roleManager.AddPermissionClaim(adminRole, "CarOrdersReportView");
         }
 
         public static async Task SeedAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
@@ -53,8 +54,8 @@ namespace AutoServiceManager.Infrastructure.Identity.Seeds
                 {
                     await userManager.CreateAsync(defaultUser, "123Pa$$word!");
                     await userManager.AddToRoleAsync(defaultUser, Roles.Basic.ToString());
-                    await userManager.AddToRoleAsync(defaultUser, Roles.Moderator.ToString());
-                    await userManager.AddToRoleAsync(defaultUser, Roles.Admin.ToString());
+                    //await userManager.AddToRoleAsync(defaultUser, Roles.Moderator.ToString());
+                    //await userManager.AddToRoleAsync(defaultUser, Roles.Admin.ToString());
                     await userManager.AddToRoleAsync(defaultUser, Roles.SuperAdmin.ToString());
                 }
                 await roleManager.SeedClaimsForSuperAdmin();

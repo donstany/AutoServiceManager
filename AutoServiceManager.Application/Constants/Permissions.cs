@@ -61,5 +61,9 @@ namespace AutoServiceManager.Application.Constants
             public const string Edit = "Permissions.CarOrder.Edit";
             public const string Delete = "Permissions.CarOrder.Delete";
         }
+        public static class CarOrdersReportView
+        {
+            public const string View = "Permissions.CarOrdersReportView.View";
+        }
     }
 }

@@ -7,8 +7,8 @@ namespace AutoServiceManager.Web.Areas.Reception.Mappings
     internal class CarOrdersReportViewProfile : Profile
     {
         public CarOrdersReportViewProfile()
-        {
-            CreateMap<GetAllCarOrdersReportViewCachedResponse, CarOrderViewModel>().ReverseMap();
+        { 
+            CreateMap<GetAllCarOrdersReportViewCachedResponse, CarOrdersReportViewModel>().ReverseMap();
         }
     }
 }

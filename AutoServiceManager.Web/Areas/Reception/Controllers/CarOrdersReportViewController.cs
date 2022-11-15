@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoServiceManager.Application.Features.CarOrders.Queries.GetAllCached;
+using AutoServiceManager.Application.Features.CarOrdersView.Queries.GetAllCached;
 using AutoServiceManager.Domain.Entities.Reception;
 using AutoServiceManager.Web.Abstractions;
 using AutoServiceManager.Web.Areas.Reception.Models;
@@ -13,7 +14,7 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
     {
         public IActionResult Index()
         {
-            var model = new CarOrdersReportView();
+            var model = new CarOrdersReportViewModel();
             return View(model);
         }
 
@@ -22,7 +23,8 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
             var response = await _mediator.Send(new GetAllCarOrdersReportViewCachedQuery());
             if (response.Succeeded)
             {
-                var viewModel = _mapper.Map<List<CarOrdersReportViewModel>>(response.Data);
+                List<GetAllCarOrdersReportViewCachedResponse> resp = response.Data;
+                var viewModel = _mapper.Map<List<CarOrdersReportViewModel>>(resp);
                 return PartialView("_ViewAll", viewModel);
             }
             return null;

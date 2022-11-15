@@ -4,11 +4,11 @@ using AutoServiceManager.Application.Features.CarOrdersView.Queries.GetAllCached
 
 namespace AutoServiceManager.Application.Mappings
 {
-    internal class CarOrdersReportViewProfile : Profile
+    public class CarOrdersReportViewProfile : Profile
     {
         public CarOrdersReportViewProfile()
         {
-            CreateMap<GetAllCarOrdersReportViewCachedResponse, CarOrder>().ReverseMap();
+            CreateMap<GetAllCarOrdersReportViewCachedResponse, CarOrdersReportView>().ReverseMap();
         }
     }
 }

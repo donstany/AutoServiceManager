@@ -1,9 +1,8 @@
 ﻿using System;
-using AspNetCoreHero.Abstractions.Domain;
 
 namespace AutoServiceManager.Domain.Entities.Reception
 {
-    public class CarOrdersReportView : AuditableEntity
+    public class CarOrdersReportView 
     {
         public int CarOrderId { get; set; }
         public DateTime CarOrderDate { get; set; }

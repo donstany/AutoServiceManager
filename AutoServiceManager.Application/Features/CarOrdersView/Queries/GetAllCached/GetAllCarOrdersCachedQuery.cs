@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoServiceManager.Application.Features.CarOrdersView.Queries.GetAllCached;
+using AutoServiceManager.Domain.Entities.Reception;
 
 namespace AutoServiceManager.Application.Features.CarOrders.Queries.GetAllCached
 {
@@ -29,7 +30,7 @@ namespace AutoServiceManager.Application.Features.CarOrders.Queries.GetAllCached
 
         public async Task<Result<List<GetAllCarOrdersReportViewCachedResponse>>> Handle(GetAllCarOrdersReportViewCachedQuery request, CancellationToken cancellationToken)
         {
-            var carOrdersReportViewList = await _carOrdersReportViewCacheRepository.GetCachedListAsync();
+            List<CarOrdersReportView> carOrdersReportViewList = await _carOrdersReportViewCacheRepository.GetCachedListAsync();
             var mappedCarOrdersReportViews = _mapper.Map<List<GetAllCarOrdersReportViewCachedResponse>>(carOrdersReportViewList);
             return Result<List<GetAllCarOrdersReportViewCachedResponse>>.Success(mappedCarOrdersReportViews);
         }

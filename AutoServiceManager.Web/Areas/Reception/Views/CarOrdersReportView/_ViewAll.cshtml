@@ -1,0 +1,46 @@
+﻿@using AutoServiceManager.Web.Areas.Reception.Models
+@model IEnumerable<CarOrdersReportViewModel>
+<table id="carOrdersReportTable" class="table table-striped" width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            <th>CarOrderId</th>
+            <th>CarOrderDate</th>
+            <th>CarOrderData</th>
+            <th>CarOrderDescription</th>
+            <th>UserMail</th>
+            <th>UserFullName</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var carOrdersReport in Model)
+        {
+            <tr>
+                <td>
+                    @carOrdersReport.CarOrderId
+                </td>
+                <td>
+                    @carOrdersReport.CarOrderDate
+                </td>
+                <td>
+                    @carOrdersReport.CarData
+                </td>
+                <td>
+                    @carOrdersReport.CarOrderDescription
+                </td>
+                <td>
+                    @carOrdersReport.UserEmail
+                </td>
+                <td>
+                    @carOrdersReport.UserFullName
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $("#carOrderTable").DataTable();
+    });
+</script>

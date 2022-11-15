@@ -6,8 +6,8 @@ namespace AutoServiceManager.Application.Interfaces.CacheRepositories
 {
     public interface ICarOrderCacheRepository
     {
-        Task<List<CarOrder>> GetCachedListAsync();
+        Task<List<CarOrder>> GetCachedListAsync(string userId);
 
-        Task<CarOrder> GetByIdAsync(int brandId);
+        Task<CarOrder> GetByIdAsync(int brandId, string userId);
     }
 }

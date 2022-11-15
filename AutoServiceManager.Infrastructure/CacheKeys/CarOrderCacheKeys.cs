@@ -2,12 +2,12 @@
 {
     public static class CarOrderCacheKeys
     {
-        public static string ListKey => "CarOrderList";
+        public static string GetListKey(string userId) => $"CarOrderList-{userId}";
 
         public static string SelectListKey => "CarOrderSelectList";
 
-        public static string GetKey(int carOrderId) => $"CarOrder-{carOrderId}";
+        public static string GetKey(int carOrderId, string userId) => $"CarOrder-{carOrderId}-{userId}";
 
-        public static string GetDetailsKey(int carOrderId) => $"CarOrder-{carOrderId}";
+        public static string GetDetailsKey(int carOrderId, string userId) => $"CarOrder-{carOrderId}-{userId}";
     }
 }

@@ -5,6 +5,7 @@ using AutoServiceManager.Application.Features.CarOrders.Commands.Update;
 using AutoServiceManager.Application.Features.CarOrders.Queries.GetAllCached;
 using AutoServiceManager.Application.Features.CarOrders.Queries.GetById;
 using AutoServiceManager.Application.Features.Cars.Queries.GetAllCached;
+using AutoServiceManager.Application.Interfaces.Shared;
 using AutoServiceManager.Web.Abstractions;
 using AutoServiceManager.Web.Areas.Reception.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -18,6 +19,11 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
     [Area("Reception")]
     public class CarOrderController : BaseController<CarOrderController>
     {
+        private readonly IAuthenticatedUserService _userService;
+        public CarOrderController(IAuthenticatedUserService userService)
+        {
+            _userService = userService;
+        }
         public IActionResult Index()
         {
             var model = new CarOrderViewModel();
@@ -26,7 +32,7 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
 
         public async Task<IActionResult> LoadAll()
         {
-            var response = await _mediator.Send(new GetAllCarOrdersCachedQuery());
+            var response = await _mediator.Send(new GetAllCarOrdersCachedQuery() { UserId = _userService.UserId });
             if (response.Succeeded)
             {
                 var viewModel = _mapper.Map<List<CarOrderViewModel>>(response.Data);
@@ -76,6 +82,7 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
                 if (id == 0)
                 {
                     var createCarOrderCommand = _mapper.Map<CreateCarOrderCommand>(carOrder);
+                    createCarOrderCommand.UserId = _userService.UserId;
                     var result = await _mediator.Send(createCarOrderCommand);
                     if (result.Succeeded)
                     {
@@ -87,11 +94,12 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
                 else
                 {
                     var updateCarOrderCommand = _mapper.Map<UpdateCarOrderCommand>(carOrder);
+                    updateCarOrderCommand.UserId = _userService.UserId;
                     var result = await _mediator.Send(updateCarOrderCommand);
                     if (result.Succeeded) _notify.Information($"CarOrder with ID {result.Data} Updated.");
                 }
 
-                var response = await _mediator.Send(new GetAllCarOrdersCachedQuery());
+                var response = await _mediator.Send(new GetAllCarOrdersCachedQuery() { UserId = _userService.UserId });
                 if (response.Succeeded)
                 {
                     var viewModel = _mapper.Map<List<CarOrderViewModel>>(response.Data);
@@ -114,11 +122,11 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
         [HttpPost]
         public async Task<JsonResult> OnPostDelete(int id)
         {
-            var deleteCommand = await _mediator.Send(new DeleteCarOrderCommand { Id = id });
+            var deleteCommand = await _mediator.Send(new DeleteCarOrderCommand { Id = id, UserId = _userService.UserId });
             if (deleteCommand.Succeeded)
             {
                 _notify.Information($"Product with Id {id} Deleted.");
-                var response = await _mediator.Send(new GetAllCarOrdersCachedQuery());
+                var response = await _mediator.Send(new GetAllCarOrdersCachedQuery() { UserId = _userService.UserId });
                 if (response.Succeeded)
                 {
                     var viewModel = _mapper.Map<List<CarOrderViewModel>>(response.Data);

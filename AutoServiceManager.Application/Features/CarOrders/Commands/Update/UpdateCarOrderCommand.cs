@@ -13,6 +13,7 @@ namespace AutoServiceManager.Application.Features.CarOrders.Commands.Update
         public string Description { get; set; }
         public DateTime? Date { get; set; }
         public int CarId { get; set; }
+        public string UserId { get; set; }
 
         public class UpdateCarOrderCommandHandler : IRequestHandler<UpdateCarOrderCommand, Result<int>>
         {
@@ -27,7 +28,7 @@ namespace AutoServiceManager.Application.Features.CarOrders.Commands.Update
 
             public async Task<Result<int>> Handle(UpdateCarOrderCommand command, CancellationToken cancellationToken)
             {
-                var carOrder = await _carOrderRepository.GetByIdAsync(command.Id);
+                var carOrder = await _carOrderRepository.GetByIdAsync(command.Id, command.UserId);
 
                 if (carOrder == null)
                 {
@@ -39,7 +40,7 @@ namespace AutoServiceManager.Application.Features.CarOrders.Commands.Update
                     carOrder.CarId = (command.CarId == 0) ? carOrder.CarId : command.CarId; //mandatory
                     carOrder.Date = command.Date ?? DateTime.Now;
 
-                    await _carOrderRepository.UpdateAsync(carOrder);
+                    await _carOrderRepository.UpdateAsync(carOrder, command.UserId);
                     await _unitOfWork.Commit(cancellationToken);
                     return Result<int>.Success(carOrder.Id);
                 }

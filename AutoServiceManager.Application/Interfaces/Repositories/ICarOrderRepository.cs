@@ -9,14 +9,14 @@ namespace AutoServiceManager.Application.Interfaces.Repositories
     {
         IQueryable<CarOrder> CarOrders { get; }
 
-        Task<List<CarOrder>> GetListAsync();
+        Task<List<CarOrder>> GetListAsync(string userId);
 
-        Task<CarOrder> GetByIdAsync(int carOrderId);
+        Task<CarOrder> GetByIdAsync(int carOrderId, string userId);
 
-        Task<int> InsertAsync(CarOrder carOrder);
+        Task<int> InsertAsync(CarOrder carOrder, string userId);
 
-        Task UpdateAsync(CarOrder carOrder);
+        Task UpdateAsync(CarOrder carOrder, string userId);
 
-        Task DeleteAsync(CarOrder carOrder);
+        Task DeleteAsync(CarOrder carOrder, string userId);
     }
 }

@@ -9,6 +9,7 @@ namespace AutoServiceManager.Application.Features.CarOrders.Commands.Delete
     public class DeleteCarOrderCommand : IRequest<Result<int>>
     {
         public int Id { get; set; }
+        public string UserId { get; set; }
 
         public class DeleteCarOrderCommandHandler : IRequestHandler<DeleteCarOrderCommand, Result<int>>
         {
@@ -23,8 +24,8 @@ namespace AutoServiceManager.Application.Features.CarOrders.Commands.Delete
 
             public async Task<Result<int>> Handle(DeleteCarOrderCommand command, CancellationToken cancellationToken)
             {
-                var carOrder = await _carOrderRepository.GetByIdAsync(command.Id);
-                await _carOrderRepository.DeleteAsync(carOrder);
+                var carOrder = await _carOrderRepository.GetByIdAsync(command.Id, command.UserId);
+                await _carOrderRepository.DeleteAsync(carOrder, command.UserId);
                 await _unitOfWork.Commit(cancellationToken);
                 return Result<int>.Success(carOrder.Id);
             }

@@ -2,14 +2,15 @@
 using System.Threading.Tasks;
 using AutoServiceManager.Application.Features.CarOrders.Queries.GetAllCached;
 using AutoServiceManager.Application.Features.CarOrdersView.Queries.GetAllCached;
-using AutoServiceManager.Domain.Entities.Reception;
 using AutoServiceManager.Web.Abstractions;
 using AutoServiceManager.Web.Areas.Reception.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoServiceManager.Web.Areas.Reception.Controllers
 {
     [Area("Reception")]
+    [Authorize(Roles = "SuperAdmin, Basic")]
     public class CarOrdersReportViewController : BaseController<CarOrdersReportViewController>
     {
         public IActionResult Index()

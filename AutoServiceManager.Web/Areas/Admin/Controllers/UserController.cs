@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 namespace AutoServiceManager.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "SuperAdmin")]
     public class UserController : BaseController<UserController>
     {
         private readonly SignInManager<ApplicationUser> _signInManager;

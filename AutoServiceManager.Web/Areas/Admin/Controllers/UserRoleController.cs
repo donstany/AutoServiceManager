@@ -1,6 +1,7 @@
 ﻿using AutoServiceManager.Infrastructure.Identity.Models;
 using AutoServiceManager.Web.Abstractions;
 using AutoServiceManager.Web.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace AutoServiceManager.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "SuperAdmin")]
     public class UserRoleController : BaseController<UserRoleController>
     {
         private readonly SignInManager<ApplicationUser> _signInManager;

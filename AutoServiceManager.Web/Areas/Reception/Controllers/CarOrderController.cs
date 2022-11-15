@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 namespace AutoServiceManager.Web.Areas.Reception.Controllers
 {
     [Area("Reception")]
+    [Authorize(Roles = "SuperAdmin, Basic")]
     public class CarOrderController : BaseController<CarOrderController>
     {
         public IActionResult Index()

@@ -5,6 +5,7 @@ using AutoServiceManager.Application.Features.Cars.Queries.GetAllCached;
 using AutoServiceManager.Application.Features.Cars.Queries.GetById;
 using AutoServiceManager.Web.Abstractions;
 using AutoServiceManager.Web.Areas.Reception.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace AutoServiceManager.Web.Areas.Reception.Controllers
 {
     [Area("Reception")]
+    [Authorize(Roles = "SuperAdmin, Basic")]
     public class CarController : BaseController<CarController>
     {
         public IActionResult Index()

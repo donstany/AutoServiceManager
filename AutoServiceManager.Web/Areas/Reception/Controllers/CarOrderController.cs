@@ -84,10 +84,14 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
         {
             if (ModelState.IsValid)
             {
+                var tupleUserRole = await GetCurrentUserAndRole(_userService, _userManager);
+
                 if (id == 0)
-                {                    
+                {
                     var createCarOrderCommand = _mapper.Map<CreateCarOrderCommand>(carOrder);
-                    createCarOrderCommand.UserId = _userService.UserId;
+                    createCarOrderCommand.RoleName = tupleUserRole.CurrentRoleName;
+                    createCarOrderCommand.UserId = tupleUserRole.CurrentUserId;
+
                     var result = await _mediator.Send(createCarOrderCommand);
                     if (result.Succeeded)
                     {
@@ -99,12 +103,14 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
                 else
                 {
                     var updateCarOrderCommand = _mapper.Map<UpdateCarOrderCommand>(carOrder);
-                    updateCarOrderCommand.UserId = _userService.UserId;
+                    updateCarOrderCommand.RoleName = tupleUserRole.CurrentRoleName;
+                    updateCarOrderCommand.UserId = tupleUserRole.CurrentUserId;
+
                     var result = await _mediator.Send(updateCarOrderCommand);
                     if (result.Succeeded) _notify.Information($"CarOrder with ID {result.Data} Updated.");
                 }
 
-                var response = await _mediator.Send(new GetAllCarOrdersCachedQuery() { UserId = _userService.UserId });
+                var response = await _mediator.Send(new GetAllCarOrdersCachedQuery() { UserId = tupleUserRole.CurrentUserId, RoleName = tupleUserRole.CurrentRoleName });
                 if (response.Succeeded)
                 {
                     var viewModel = _mapper.Map<List<CarOrderViewModel>>(response.Data);
@@ -127,11 +133,13 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
         [HttpPost]
         public async Task<JsonResult> OnPostDelete(int id)
         {
-            var deleteCommand = await _mediator.Send(new DeleteCarOrderCommand { Id = id, UserId = _userService.UserId });
+            var tupleUserRole = await GetCurrentUserAndRole(_userService, _userManager);
+
+            var deleteCommand = await _mediator.Send(new DeleteCarOrderCommand { Id = id, UserId = tupleUserRole.CurrentUserId, RoleName = tupleUserRole.CurrentRoleName });
             if (deleteCommand.Succeeded)
             {
                 _notify.Information($"Product with Id {id} Deleted.");
-                var response = await _mediator.Send(new GetAllCarOrdersCachedQuery() { UserId = _userService.UserId });
+                var response = await _mediator.Send(new GetAllCarOrdersCachedQuery() { UserId = tupleUserRole.CurrentUserId, RoleName = tupleUserRole.CurrentRoleName });
                 if (response.Succeeded)
                 {
                     var viewModel = _mapper.Map<List<CarOrderViewModel>>(response.Data);

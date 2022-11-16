@@ -1,5 +1,4 @@
-﻿using AutoServiceManager.Application.Constants;
-using AutoServiceManager.Application.Enums;
+﻿using AutoServiceManager.Application.Enums;
 using AutoServiceManager.Application.Features.CarOrders.Commands.Create;
 using AutoServiceManager.Application.Features.CarOrders.Commands.Delete;
 using AutoServiceManager.Application.Features.CarOrders.Commands.Update;
@@ -38,16 +37,9 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
 
         public async Task<IActionResult> LoadAll()
         {
-            var currentUserId = _userService.UserId;
-            var currentRoleName = Roles.Basic.ToString();
+            var tupleUserRole = await GetCurrentUserAndRole(_userService, _userManager);
 
-            var user = await _userManager.FindByIdAsync(currentUserId);
-            if (await _userManager.IsInRoleAsync(user, Roles.SuperAdmin.ToString()))
-            {
-                currentRoleName = Roles.SuperAdmin.ToString();
-            } 
-            //
-            var response = await _mediator.Send(new GetAllCarOrdersCachedQuery() { UserId = currentUserId, RoleName = currentRoleName });
+            var response = await _mediator.Send(new GetAllCarOrdersCachedQuery() { UserId = tupleUserRole.CurrentUserId, RoleName = tupleUserRole.CurrentRoleName });
             if (response.Succeeded)
             {
                 var viewModel = _mapper.Map<List<CarOrderViewModel>>(response.Data);
@@ -157,6 +149,19 @@ namespace AutoServiceManager.Web.Areas.Reception.Controllers
                 _notify.Error(deleteCommand.Message);
                 return null;
             }
+        }
+
+        private async Task<(string CurrentUserId, string CurrentRoleName)> GetCurrentUserAndRole(IAuthenticatedUserService userService, UserManager<ApplicationUser> userManager)
+        {
+            var currentUserId = _userService.UserId;
+            var currentRoleName = Roles.Basic.ToString();
+
+            var user = await _userManager.FindByIdAsync(currentUserId);
+            if (await _userManager.IsInRoleAsync(user, Roles.SuperAdmin.ToString()))
+            {
+                currentRoleName = Roles.SuperAdmin.ToString();
+            }
+            return (currentUserId, currentRoleName);
         }
     }
 }

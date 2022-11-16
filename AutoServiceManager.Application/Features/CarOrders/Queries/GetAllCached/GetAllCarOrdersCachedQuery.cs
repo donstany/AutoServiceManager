@@ -11,6 +11,7 @@ namespace AutoServiceManager.Application.Features.CarOrders.Queries.GetAllCached
     public class GetAllCarOrdersCachedQuery : IRequest<Result<List<GetAllCarOrdersCachedResponse>>>
     {
         public string UserId { get; set; }
+        public string RoleName { get; set; }
         public GetAllCarOrdersCachedQuery()
         {
         }
@@ -29,7 +30,7 @@ namespace AutoServiceManager.Application.Features.CarOrders.Queries.GetAllCached
 
         public async Task<Result<List<GetAllCarOrdersCachedResponse>>> Handle(GetAllCarOrdersCachedQuery request, CancellationToken cancellationToken)
         {
-            var carOrderList = await _carOrderCacheRepository.GetCachedListAsync(request.UserId);
+            var carOrderList = await _carOrderCacheRepository.GetCachedListAsync(request.UserId, request.RoleName);
             var mappedCarOrders = _mapper.Map<List<GetAllCarOrdersCachedResponse>>(carOrderList);
             return Result<List<GetAllCarOrdersCachedResponse>>.Success(mappedCarOrders);
         }

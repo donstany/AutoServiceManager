@@ -21,27 +21,26 @@ namespace AutoServiceManager.Infrastructure.CacheRepositories
             _carOrderRepository = carOrderRepository;
         }
 
-        public async Task<CarOrder> GetByIdAsync(int carOrderId, string userId)
+        public async Task<CarOrder> GetByIdAsync(int carOrderId, string roleName, string userId)
         {
-            string cacheKey = CarOrderCacheKeys.GetKey(carOrderId, userId);
+            string cacheKey = CarOrderCacheKeys.GetKey(carOrderId, roleName, userId);
             var carOrder = await _distributedCache.GetAsync<CarOrder>(cacheKey);
             if (carOrder == null)
             {
-                carOrder = await _carOrderRepository.GetByIdAsync(carOrderId, userId);
+                carOrder = await _carOrderRepository.GetByIdAsync(carOrderId, roleName, userId);
                 Throw.Exception.IfNull(carOrder, "CarOrder", "No CarOrder Found");
                 await _distributedCache.SetAsync(cacheKey, carOrder);
             }
             return carOrder;
         }
 
-        public async Task<List<CarOrder>> GetCachedListAsync(string userId)
+        public async Task<List<CarOrder>> GetCachedListAsync(string userId, string roleName)
         {
-            //string cacheKey = CarOrderCacheKeys.ListKey;
-            string cacheKey = CarOrderCacheKeys.GetListKey(userId);
+            string cacheKey = CarOrderCacheKeys.GetListKey(roleName, userId);
             var carOrderList = await _distributedCache.GetAsync<List<CarOrder>>(cacheKey);
             if (carOrderList == null)
             {
-                carOrderList = await _carOrderRepository.GetListAsync(userId);
+                carOrderList = await _carOrderRepository.GetListAsync(roleName, userId);
                 await _distributedCache.SetAsync(cacheKey, carOrderList);
             }
             return carOrderList;

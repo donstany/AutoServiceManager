@@ -36,7 +36,7 @@ namespace AutoServiceManager.Infrastructure.Repositories
 
         public async Task<List<CarOrder>> GetListAsync(string roleName, string userId)
         {
-            var query = _repository.Entities;
+            var query = _repository.Entities.Include(x => x.Car);
 
             if (roleName == Roles.SuperAdmin.ToString())
             {

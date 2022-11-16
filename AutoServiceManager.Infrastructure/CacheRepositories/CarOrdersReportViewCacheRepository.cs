@@ -24,6 +24,7 @@ namespace AutoServiceManager.Infrastructure.CacheRepositories
         {
             string cacheKey = CarOrdersReportViewCacheKeys.ListKey;
             var carOrdersReportViewCacheKeysList = await _distributedCache.GetAsync<List<CarOrdersReportView>>(cacheKey);
+            carOrdersReportViewCacheKeysList = null;
             if (carOrdersReportViewCacheKeysList == null)
             {
                 carOrdersReportViewCacheKeysList = await _carOrdersReportViewRepository.GetListAsync();

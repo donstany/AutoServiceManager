@@ -14,6 +14,8 @@ namespace AutoServiceManager.Application.Features.CarOrders.Commands.Create
         public DateTime Date { get; set; }
         public string Description { get; set; }
         public int CarId { get; set; }
+        public string UserId { get; set; }
+        public string RoleName { get; set; }
     }
 
     public class CreateCarOrderCommandHandler : IRequestHandler<CreateCarOrderCommand, Result<int>>
@@ -33,7 +35,7 @@ namespace AutoServiceManager.Application.Features.CarOrders.Commands.Create
         public async Task<Result<int>> Handle(CreateCarOrderCommand request, CancellationToken cancellationToken)
         {
             var carOrder = _mapper.Map<CarOrder>(request);
-            await _carOrderRepository.InsertAsync(carOrder);
+            await _carOrderRepository.InsertAsync(carOrder, request.RoleName, request.UserId);
             await _unitOfWork.Commit(cancellationToken);
             return Result<int>.Success(carOrder.Id);
         }

@@ -1,4 +1,65 @@
-﻿# Clean Architecture Boilerplate - ASP.NET Core 5.0 (WebApi & MVC)
+﻿# INTERVIEW TASK
+
+Recommended but not mandatory
+----------------------------------------------------------------
+[Back End - ASP.NET Web API] ⇔ [Middleware - jQuery] ⇔ [Front End - jQuery + HTML]
+----------------------------------------------------------------
+
+I. Objects:
+	
+	1. Users
+		a. Names *
+		b. Email *
+		c. Password *
+		d. Role * - Manager or Mechanic
+	2. Orders
+		a. Number - automatically generated, without editing option
+		b. Date and time - automatically generated, with an option to edit
+		c. Car * - select from a list
+	d. Description of the problem * - from 5 to 300 characters
+		3. Cars
+		a. Brand *
+		b. Color *
+		c. Registration number
+
+II. Pages
+	
+	1. Login
+		a. Email and Password
+	2. Users
+		a. Add/Edit/Delete
+		b. Only Managers have access
+	3. Orders
+		a. Add/Edit/Delete
+		b. When adding or editing, to be able to add or select an already existing one car. The addition is with its respective parameters.
+	4. Report
+		a. A single text field to search among the parameters of each query and the cars to her.
+		b. The results should contain "Request No", "Date and Time", "Vehicle Data", "User data
+	(no password)", "Description of the problem"
+
+Clarifications
+--------------
+
+Managers:
+(Default to have manager with static login)
+	a. Users - Access Allowed
+	b. Orders - Access allowed, See all report
+	c. Report - Access Allowed
+Mechanics:
+	a. Users - Access Denied
+	b. Orders - Access allowed, Only see their report
+	c. Report - Access Allowed
+
+Estimation
+
+Demonstrate implementations, good practices, (architecture/design) patterns and writing coding style.
+
+==========================
+SOLUTION BASED ON 
+==========================
+
+
+# Clean Architecture Boilerplate - ASP.NET Core 5.0 (WebApi & MVC)
 Clean Architecture Solution Template for ASP.NET Core 5.0. Built with Onion/Hexagonal Architecture and incorporates the most essential Packages your projects will ever need. Includes both WebApi and Web(MVC) Projects.
 
 # V1.0.0 is Released.

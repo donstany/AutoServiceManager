@@ -31,7 +31,8 @@ II. Pages
 		b. Only Managers have access
 	3. Orders
 		a. Add/Edit/Delete
-		b. When adding or editing, to be able to add or select an already existing one car. The addition is with its respective parameters.
+		b. When adding or editing, to be able to add or select an already existing one car. 
+		The addition is with its respective parameters.
 	4. Report
 		a. A single text field to search among the parameters of each query and the cars to her.
 		b. The results should contain "Request No", "Date and Time", "Vehicle Data", "User data
@@ -41,20 +42,26 @@ Clarifications
 --------------
 
 Managers:
+
 (Default to have manager with static login)
+
 	a. Users - Access Allowed
 	b. Orders - Access allowed, See all report
 	c. Report - Access Allowed
+
 Mechanics:
+
 	a. Users - Access Denied
 	b. Orders - Access allowed, Only see their report
 	c. Report - Access Allowed
 
+
 Estimation
+----------
 
 Demonstrate implementations, good practices, (architecture/design) patterns and writing coding style.
 
-==========================
+
 SOLUTION BASED ON 
 ==========================
 

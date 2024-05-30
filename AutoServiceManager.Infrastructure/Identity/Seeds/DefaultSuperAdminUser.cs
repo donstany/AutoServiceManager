@@ -41,8 +41,8 @@ namespace AutoServiceManager.Infrastructure.Identity.Seeds
             {
                 UserName = "superadmin",
                 Email = "superadmin@gmail.com",
-                FirstName = "Mukesh",
-                LastName = "Murugan",
+                FirstName = "Ivan",
+                LastName = "Petrov",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 IsActive = true

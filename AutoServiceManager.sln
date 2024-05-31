@@ -21,7 +21,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoServiceManager.Infrastr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{20BC39C7-DF81-48E7-A00B-DF1A569D1B6E}"
 	ProjectSection(SolutionItems) = preProject
+		Logo_ASM.png = Logo_ASM.png
 		README.md = README.md
+		S1.png = S1.png
+		S2.png = S2.png
+		S3.png = S3.png
+		S4.png = S4.png
+		V1.png = V1.png
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoServiceManager.Infrastructure.Shared", "AutoServiceManager.Infrastructure.Shared\AutoServiceManager.Infrastructure.Shared.csproj", "{7E62A300-1001-4F7D-9E25-C3CE55BFFBBF}"

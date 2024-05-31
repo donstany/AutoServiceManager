@@ -15,8 +15,8 @@ namespace AutoServiceManager.Infrastructure.Identity.Seeds
             {
                 UserName = "basicuser",
                 Email = "basicuser@gmail.com",
-                FirstName = "John",
-                LastName = "Doe",
+                FirstName = "Simo",
+                LastName = "Jankov",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 IsActive = true

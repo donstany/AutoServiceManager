@@ -1,6 +1,5 @@
 ﻿# INTERVIEW TASK
 
-Recommended but not mandatory
 ------------------------------------------------------------------------------------
 [Back End - ASP.NET Web API] ⇔ [Middleware - jQuery] ⇔ [Front End - jQuery + HTML]
 ------------------------------------------------------------------------------------
@@ -102,3 +101,23 @@ used template from https://aspnetboilerplate.com/
 - Default Users / Roles Seeding at Startup
 - Supports Audit Logging / Activity Logging for Entity Framework Core
 - Automapper
+
+### Settings for running project locally
+
+- Download/Clone code from GitHub
+- Navigate in Visual Studio project AutoServiceManager.Web and choose from "Set as Startup Project"
+- Ensure that connection string point to correct instance:
+  
+	Go to appsettings.json in AutoServiceManager.Web and change "ConnectionStrings" point to correct MSSQL instance.
+	
+	"ConnectionStrings": {
+			"ApplicationConnection": "Data Source=localhost;Initial Catalog=AutoServiceManager;Integrated Security=True;MultipleActiveResultSets=True",
+			"IdentityConnection": "Data Source=localhost;Initial Catalog=AutoServiceManager;Integrated Security=True;MultipleActiveResultSets=True"
+			},
+
+- Run 2 scripts in Package Manager Console in Visual Studio for 2 Db context for apply migrations and seed initial data in DB: 
+		 Update-Database -Context IdentityContext 
+         Update-Database -Context ApplicationDbContext
+- Rebuild Solution in Visual Studio
+- Run with IIS Express from Visual Studio
+
